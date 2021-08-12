@@ -1,0 +1,41 @@
+spring:
+  datasource:
+   username: root
+   password: 7758
+   url: jdbc:mysql://localhost:3306/account?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+   driver-class-name: com.mysql.jdbc.Driver
+   type: com.alibaba.druid.pool.DruidDataSource
+   initialSize: 5
+   minIdle: 5
+   maxActive: 20
+   maxWait: 60000
+   timeBetweenEvictionRunsMillis: 60000
+   minEvictableIdleTimeMillis: 300000
+   validationQuery: SELECT 1 FROM DUAL
+   testWhileIdle: true
+   testOnBorrow: false
+   testOnReturn: false
+   poolPreparedStatements: true
+   filters: stat,wall
+   maxPoolPreparedStatementPerConnectionSize: 20
+   useGlobalDataSourceStat: true
+   connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=50
+
+security:
+  user:
+    name: admin
+    password: 7758
+
+server:
+  port: 7758
+
+debug: true
+logging:
+  level:
+    root: debug
+
+mybatis-plus:
+  mapper-locations: classpath:mapping/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
