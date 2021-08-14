@@ -11,14 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author xzt
@@ -30,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PurchaseController {
     @Autowired
     PurchaseServiceImpl purchaseServiceImpl;
+
     @GetMapping("/purchase")
     public String getAll() throws JsonProcessingException {
         return new ObjectMapper().writeValueAsString(purchaseServiceImpl.getAllPurchase());
@@ -40,9 +40,16 @@ public class PurchaseController {
 //        System.out.println(new ObjectMapper().writeValueAsString(purchaseServiceImpl.getAllPurchase()));
 //    }
 
-    @GetMapping("/add")
-    public void Insert(){
-        purchaseServiceImpl.insert();
+    @PostMapping("/purchase")
+    public void InsertController(@RequestParam(value = "modelspecification") String modelspecification,
+                                 @RequestParam(value = "consumer") String consumer,
+                                 @RequestParam(value = "contact") String contact,
+                                 @RequestParam(value = "productprice") BigDecimal productprice,
+                                 @RequestParam(value = "paymentamount") BigDecimal paymentamount,
+                                 @RequestParam(value = "deposit") Boolean deposit,
+                                 @RequestParam(value = "tips" ,required = false) String tips) {
+        Purchase purchase = new Purchase(modelspecification, consumer, contact, productprice, paymentamount, deposit, tips);
+        purchaseServiceImpl.insert(purchase);
     }
 }
 

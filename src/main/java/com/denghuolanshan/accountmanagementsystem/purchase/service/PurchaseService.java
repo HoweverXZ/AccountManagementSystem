@@ -6,6 +6,7 @@ import com.denghuolanshan.accountmanagementsystem.purchase.mapper.PurchaseMapper
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -18,5 +19,5 @@ import java.util.List;
  */
 public interface PurchaseService extends IService<Purchase> {
     public List<Purchase> getAllPurchase();
-    public void insert();
+    public void insert(Purchase purchase);
 }

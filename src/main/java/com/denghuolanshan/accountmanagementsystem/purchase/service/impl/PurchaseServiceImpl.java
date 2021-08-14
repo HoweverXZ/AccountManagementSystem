@@ -4,10 +4,12 @@ import com.denghuolanshan.accountmanagementsystem.purchase.entity.Purchase;
 import com.denghuolanshan.accountmanagementsystem.purchase.mapper.PurchaseMapper;
 import com.denghuolanshan.accountmanagementsystem.purchase.service.PurchaseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -24,6 +26,7 @@ import java.util.List;
 public class PurchaseServiceImpl extends ServiceImpl<PurchaseMapper, Purchase> implements PurchaseService {
     @Autowired
     private PurchaseMapper purchaseMapper;
+
     @Override
     public List<Purchase> getAllPurchase() {
         List<Purchase> all = purchaseMapper.getAll();
@@ -31,7 +34,9 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseMapper, Purchase> i
     }
 
     @Override
-    public void insert() {
-        purchaseMapper.insert(new Purchase("60V50A","希芭plus","157xxxxxxxx", BigDecimal.valueOf(0.75),BigDecimal.valueOf(0.48),true,"欠款ING"));
+    public void insert(Purchase purchase) {
+        purchaseMapper.insert(purchase);
     }
+
+
 }
