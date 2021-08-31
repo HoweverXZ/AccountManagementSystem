@@ -2,18 +2,14 @@ package com.denghuolanshan.accountmanagementsystem.purchase.controller;
 
 
 import com.denghuolanshan.accountmanagementsystem.purchase.entity.Purchase;
-import com.denghuolanshan.accountmanagementsystem.purchase.service.PurchaseService;
 import com.denghuolanshan.accountmanagementsystem.purchase.service.impl.PurchaseServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JacksonJsonParser;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 /**
  * <p>
@@ -47,9 +43,14 @@ public class PurchaseController {
                                  @RequestParam(value = "productprice") BigDecimal productprice,
                                  @RequestParam(value = "paymentamount") BigDecimal paymentamount,
                                  @RequestParam(value = "deposit") Boolean deposit,
-                                 @RequestParam(value = "tips" ,required = false) String tips) {
+                                 @RequestParam(value = "tips", required = false) String tips) {
         Purchase purchase = new Purchase(modelspecification, consumer, contact, productprice, paymentamount, deposit, tips);
         purchaseServiceImpl.insert(purchase);
+    }
+
+    @DeleteMapping("/purchase")
+    public void deleteController(@RequestParam(value = "contact") String contact){
+        purchaseServiceImpl.removeById(contact);
     }
 }
 

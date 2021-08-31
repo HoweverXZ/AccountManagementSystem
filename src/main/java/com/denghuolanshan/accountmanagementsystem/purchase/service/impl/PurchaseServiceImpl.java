@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -38,5 +39,9 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseMapper, Purchase> i
         purchaseMapper.insert(purchase);
     }
 
-
+    @Override
+    public boolean removeById(Serializable id) {
+        purchaseMapper.deleteById(id);
+        return super.removeById(id);
+    }
 }
