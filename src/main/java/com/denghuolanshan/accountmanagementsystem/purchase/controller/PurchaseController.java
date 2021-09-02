@@ -49,8 +49,19 @@ public class PurchaseController {
     }
 
     @DeleteMapping("/purchase")
-    public void deleteController(@RequestParam(value = "contact") String contact){
+    public void deleteController(@RequestParam(value = "contact") String contact) {
         purchaseServiceImpl.removeById(contact);
+    }
+
+    @PutMapping("/purchase")
+    public void putController(@RequestParam(value = "modelspecification") String modelspecification,
+                              @RequestParam(value = "consumer") String consumer,
+                              @RequestParam(value = "contact") String contact,
+                              @RequestParam(value = "productprice") BigDecimal productprice,
+                              @RequestParam(value = "paymentamount") BigDecimal paymentamount,
+                              @RequestParam(value = "deposit") Boolean deposit,
+                              @RequestParam(value = "tips", required = false) String tips) {
+        purchaseServiceImpl.updateById(new Purchase(modelspecification, consumer, contact, productprice, paymentamount, deposit, tips));
     }
 }
 

@@ -41,7 +41,11 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseMapper, Purchase> i
 
     @Override
     public boolean removeById(Serializable id) {
-        purchaseMapper.deleteById(id);
-        return super.removeById(id);
+       return super.removeById(id);
+    }
+
+    @Override
+    public boolean updateById(Purchase entity) {
+        return super.updateById(entity);
     }
 }
