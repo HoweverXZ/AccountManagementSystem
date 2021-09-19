@@ -18,6 +18,4 @@ import java.util.List;
  * @since 2021-08-09
  */
 public interface PurchaseService extends IService<Purchase> {
-    public List<Purchase> getAllPurchase();
-    public void insert(Purchase purchase);
 }

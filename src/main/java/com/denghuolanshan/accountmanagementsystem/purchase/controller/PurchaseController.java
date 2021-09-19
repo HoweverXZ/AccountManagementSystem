@@ -28,7 +28,7 @@ public class PurchaseController {
 
     @GetMapping("/purchase")
     public String getAll() throws JsonProcessingException {
-        return new ObjectMapper().writeValueAsString(purchaseServiceImpl.getAllPurchase());
+        return new ObjectMapper().writeValueAsString(purchaseServiceImpl.list());
     }
 //    @Test
 //    public void littleTest() throws JsonProcessingException {
@@ -45,7 +45,7 @@ public class PurchaseController {
                                  @RequestParam(value = "deposit") Boolean deposit,
                                  @RequestParam(value = "tips", required = false) String tips) {
         Purchase purchase = new Purchase(modelspecification, consumer, contact, productprice, paymentamount, deposit, tips);
-        purchaseServiceImpl.insert(purchase);
+        purchaseServiceImpl.save(purchase);
     }
 
     @DeleteMapping("/purchase")

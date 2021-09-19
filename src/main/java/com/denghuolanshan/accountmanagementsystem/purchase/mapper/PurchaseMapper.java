@@ -17,9 +17,7 @@ import java.util.List;
  * @author xzt
  * @since 2021-08-09
  */
-@Repository
 @Mapper
 public interface PurchaseMapper extends BaseMapper<Purchase> {
-    @Select("select * from purchase")
-    public List<Purchase> getAll();
+
 }

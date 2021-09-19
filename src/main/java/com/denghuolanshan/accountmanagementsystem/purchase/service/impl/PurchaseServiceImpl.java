@@ -25,27 +25,4 @@ import java.util.List;
  */
 @Service
 public class PurchaseServiceImpl extends ServiceImpl<PurchaseMapper, Purchase> implements PurchaseService {
-    @Autowired
-    private PurchaseMapper purchaseMapper;
-
-    @Override
-    public List<Purchase> getAllPurchase() {
-        List<Purchase> all = purchaseMapper.getAll();
-        return all;
-    }
-
-    @Override
-    public void insert(Purchase purchase) {
-        purchaseMapper.insert(purchase);
-    }
-
-    @Override
-    public boolean removeById(Serializable id) {
-       return super.removeById(id);
-    }
-
-    @Override
-    public boolean updateById(Purchase entity) {
-        return super.updateById(entity);
-    }
 }
